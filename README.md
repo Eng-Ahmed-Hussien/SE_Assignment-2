@@ -1,22 +1,25 @@
 # ADVANCED SOFTWARE ENGINEERING
 
 ## Assignment No. 2  
+
 **Software Implementation and Coding Standards**  
 *(From my understanding of the fourth lecture)*
 
 ### Submitted To
+
 - Assoc. Prof. Ahmed Moustafa Elmahalawy  
 - Dr. Mervat
 
 ### Submitted By
+
 - **Name:** Ahmed Hussien El-Sayed Abd El Hamid  
 - **Academic ID:** 15210408
 
 ---
 
-# Creative Full-Stack Flask App with SE Guidelines
+## Full-Stack Flask App with SE Guidelines
 
-This repository contains a creative full‑stack application built with Flask and SQLite. The project demonstrates key software engineering best practices and coding standards:
+This repository contains a full‑stack application built with Flask and SQLite. The project demonstrates key software engineering best practices and coding standards:
 
 - **Naming Conventions:**  
   - camelCase for variables and methods  
@@ -79,7 +82,7 @@ SE_ASSIGNMENT-2
     python app.py
     ```
 
-4. Open your browser and go to http://127.0.0.1:5000 to view the app.
+4. Open your browser and go to [http://127.0.0.1:5000](http://127.0.0.1:5000) to view the app.
 
 ## Usage
 
@@ -91,7 +94,3 @@ SE_ASSIGNMENT-2
 ## Contributing
 
 Feel free to open issues or submit pull requests. For major changes, please open an issue first to discuss the proposed changes.
-
-## License
-
-This project is licensed under the MIT License (or add your license here).
