@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Full-Stack App with Custom Login Form 
 
@@ -12,7 +11,6 @@ Coding standards applied:
 - UPPER_CASE for constants
 - PEP 257 docstrings for documentation
 - try-except blocks for error handling
-
 """
 
 import os
@@ -172,7 +170,9 @@ def logout():
     flash('Logged out successfully.', 'info')
     return redirect(url_for('login'))
 
-if __name__ == '__main__':
-    # with app.app_context():
-    #      createTables()
-    # app.run(debug=True)
+# The following block is commented out for serverless deployment.
+# Uncomment the block below for local testing.
+# if __name__ == '__main__':
+#     with app.app_context():
+#         createTables()
+#     app.run(debug=True)
