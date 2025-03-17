@@ -173,6 +173,6 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    with app.app_context():
-         createTables()
-    app.run(debug=True)
+    # with app.app_context():
+    #      createTables()
+    # app.run(debug=True)
