@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SE Task2</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <section>
+    {% for i in range(260) %}
+      <span></span>
+    {% endfor %}
+
+    <div class="signin">
+      <div class="content">
+        <h2>Sign In</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div style="color: {% if category == 'danger' %}red{% elif category == 'success' %}green{% else %}white{% endif %};">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form class="form" method="post" action="{{ url_for('login') }}">
+          <div class="inputBox">
+            <input type="text" name="username" required>
+            <i>Username</i>
+          </div>
+          <div class="inputBox">
+            <input type="password" name="password" required>
+            <i>Password</i>
+          </div>
+          <div class="links">
+            <a href="#">Forgot Password</a>
+            <a href="{{ url_for('register') }}">Signup</a>
+          </div>
+          <div class="inputBox">
+            <input type="submit" value="Login">
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

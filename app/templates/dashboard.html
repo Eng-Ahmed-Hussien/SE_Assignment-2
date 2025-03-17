@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Creative App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: 'Open Sans', sans-serif;
+      padding: 40px;
+    }
+    .content-card {
+      background: #1e1e1e;
+      border-radius: 15px;
+      padding: 40px;
+      margin: auto;
+      max-width: 1000px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8em;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0f0;
+    }
+    h4 {
+      color: #0f0;
+      margin-top: 20px;
+    }
+    table {
+      background: #1e1e1e;
+    }
+    th, td {
+      color: #e0e0e0;
+    }
+    .btn-custom {
+      background: #0f0;
+      color: #121212;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 30px;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+    .btn-custom:hover {
+      background: rgb(1, 212, 1);
+    }
+    .task-desc {
+      background: #263238;
+      padding: 20px;
+      border-left: 5px solid #0f0;
+      border-radius: 8px;
+      margin-top: 30px;
+    }
+    .task-desc h5 {
+      margin-bottom: 15px;
+    }
+    a.text-info {
+      color: #0f0 !important;
+      padding: .5rem 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      border: 1px solid #0f0;
+      margin-left: 10px;
+
+    }
+    a.text-info:hover {
+      background: #0f0;
+      color: #121212;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-card">
+    <h2>Dashboard</h2>
+    <p class="text-center">
+      Welcome, {{ session.username }}! 
+      <a href="{{ url_for('logout') }}" class="text-info">Logout</a>
+    </p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} mt-3">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="row mt-4">
+      <!-- User Management Section -->
+      <div class="col-md-6">
+        <h4>User Management</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.password }}</td>
+              <td>
+                {% if user.username != 'admin' %}
+                  <a href="{{ url_for('editUser', user_id=user.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                  <a href="{{ url_for('deleteUser', user_id=user.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                {% else %}
+                  <span class="text-muted">N/A</span>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <!-- Task Overview Section -->
+      <div class="col-md-6">
+        <h4>Task Overview</h4>
+        <p>
+          This application demonstrates key software engineering principles—such as proper naming conventions, 
+          documentation styles, effective error handling, and robust version control using Git and GitFlow. 
+          The creative design showcases a dark theme with custom visual elements for a modern, user-friendly experience.
+        </p>
+        <a href="{{ url_for('taskExplanation') }}" class="btn btn-custom">Show More</a>
+      </div>
+    </div>
+    <!-- Additional Brief Description Section -->
+    <div class="task-desc mt-4">
+      <h5>Brief Task Description</h5>
+      <p>
+        The task is based on <strong>SE Lecture 4</strong> and requires following established coding standards:
+        using camelCase for variables and methods, PascalCase for class names, and UPPER_CASE for constants.
+        It emphasizes proper documentation using PEP 257 or Javadoc, effective error handling with try-except blocks, 
+        and robust version control practices with Git and GitFlow. This creative implementation not only adheres to 
+        these guidelines but also delivers an engaging user experience.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

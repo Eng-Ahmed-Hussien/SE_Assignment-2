@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Explanation - Creative App</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Fira+Code&family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- Highlight.js CSS (Monokai Sublime theme) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css">
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: 'Open Sans', sans-serif;
+      padding: 40px;
+    }
+    .content-card {
+      background: #1e1e1e;
+      border-radius: 15px;
+      padding: 40px;
+      margin: auto;
+      max-width: 900px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8em;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0f0;
+      animation: fadeInDown 1s ease-in-out;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h4, h5 {
+      color: #0f0;
+      margin-top: 20px;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 20px;
+    }
+    pre {
+      background: #2d2d2d;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9em;
+      overflow-x: auto;
+      color: #f8f8f2;
+      margin-bottom: 15px;
+    }
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    .fixed-content-section {
+      margin-top: 30px;
+    }
+    .fixed-content-section h5 {
+      border-bottom: 1px solid #424242;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+    .creative-section {
+      background: #263238;
+      padding: 20px;
+      border-left: 5px solid #0f0;
+      border-radius: 8px;
+      margin-top: 30px;
+      color: #e0e0e0;
+    }
+    .creative-section p {
+      font-size: 1.1em;
+    }
+    .btn-custom {
+      background: #0f0;
+      color: #121212;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 30px;
+      text-transform: uppercase;
+      transition: background 0.3s ease;
+    }
+    .btn-custom:hover {
+      background: rgb(1, 212, 1);
+    }
+  </style>
+</head>
+<body>
+  <div class="content-card">
+    <h2>Task Explanation</h2>
+    <p class="lead text-center">
+      This task is based on <strong>Software Engineering Lecture 4 (SE_lec4.pdf)</strong> and implements best practices in software development.
+    </p>
+    
+    <!-- Fixed content for guidelines -->
+    <div class="fixed-content-section">
+      <h5>1️⃣ Naming Conventions</h5>
+      <ul>
+        <li>
+          <strong>camelCase</strong> for variables and methods:
+          <pre><code class="language-python">def createTables():
+    """
+    Create database tables if they do not exist and add a default admin user.
+    """</code></pre>
+        </li>
+        <li>
+          <strong>PascalCase</strong> for class names:
+          <pre><code class="language-python">class User(db.Model):</code></pre>
+        </li>
+        <li>
+          <strong>UPPER_CASE</strong> for constants:
+          <pre><code class="language-python">SECRET_KEY = 'my_secret_key'</code></pre>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="fixed-content-section">
+      <h5>2️⃣ Documentation Style</h5>
+      <ul>
+        <li>
+          The app follows <strong>PEP 257</strong> docstring format. For example:
+          <pre><code class="language-python">def createTables():
+    """
+    Create database tables if they do not exist and add a default admin user.
+    """</code></pre>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="fixed-content-section">
+      <h5>3️⃣ Error Handling</h5>
+      <ul>
+        <li>
+          Proper error management using <strong>try-except blocks</strong>. For example:
+          <pre><code class="language-python">try:
+    user = User.query.filter_by(username=username, password=password).first()
+    if user:
+        session['user_id'] = user.id
+except Exception as error:
+    flash(f'Error: {error}', 'danger')</code></pre>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="fixed-content-section">
+      <h5>4️⃣ Version Control</h5>
+      <ul>
+        <li>
+          The project uses <strong>Git for version control</strong>:
+          <pre><code class="language-bash">git init
+git add .
+git commit -m "Initial commit"
+git push origin main</code></pre>
+        </li>
+        <li>
+          Recommended use of <strong>GitFlow branching strategy</strong>:
+          <pre><code class="language-bash">git checkout -b develop
+git checkout -b feature-login</code></pre>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- Creative Solutions Section -->
+    <div class="creative-section">
+      <h5>My Creative Solutions</h5>
+      <p>
+        I developed this full‑stack application using Flask and SQLite, infusing it with a unique visual style through custom CSS animations and gradients. By adhering to SE guidelines, the code remains clean, maintainable, and scalable. I also adopted a GitFlow workflow for effective feature management and collaboration. This dark theme design provides a modern, user-friendly interface while clearly presenting how my implementation meets key software engineering practices.
+      </p>
+    </div>
+    
+    <div class="text-center">
+      <a href="{{ url_for('dashboard') }}" class="btn btn-custom mt-4">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <!-- Highlight.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
