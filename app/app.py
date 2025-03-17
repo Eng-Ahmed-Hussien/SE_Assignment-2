@@ -2,8 +2,8 @@
 Full-Stack App with Custom Login Form 
 
 This application implements a login system, registration, a dashboard with user management, 
-a task explanation page, and now password editing functionality. It is built with Flask, uses SQLite 
-as its database, and uses a custom HTML/CSS login form.
+a task explanation page, and now password editing functionality. It is built with Flask, uses a global database 
+(if DATABASE_URL is set) or falls back to SQLite for development, and uses a custom HTML/CSS login form.
 
 Coding standards applied:
 - camelCase for variables and methods
@@ -20,10 +20,15 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = 'ahmed_hussien'  
 
-# Database configuration using SQLite
-basedir = os.path.abspath(os.path.dirname(__file__))
-dbPath = os.path.join(basedir, 'app.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbPath
+# Determine database URL: use external DB if DATABASE_URL is set, else fallback to SQLite
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+else:
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    dbPath = os.path.join(basedir, 'app.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbPath
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -170,8 +175,7 @@ def logout():
     flash('Logged out successfully.', 'info')
     return redirect(url_for('login'))
 
-# The following block is commented out for serverless deployment.
-# Uncomment the block below for local testing.
+# For local testing, uncomment the following block:
 # if __name__ == '__main__':
 #     with app.app_context():
 #         createTables()
