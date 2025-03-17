@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Full-Stack App with Custom Login Form and External CSS
+Full-Stack App with Custom Login Form 
 
 This application implements a login system, registration, a dashboard with user management, 
 a task explanation page, and now password editing functionality. It is built with Flask, uses SQLite 
@@ -13,7 +13,6 @@ Coding standards applied:
 - PEP 257 docstrings for documentation
 - try-except blocks for error handling
 
-Feel free to push this code to GitHub using your preferred Git branching strategy.
 """
 
 import os
@@ -21,7 +20,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key = 'my_secret_key'  # Change this for production!
+app.secret_key = 'ahmed_hussien'  
 
 # Database configuration using SQLite
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -53,7 +52,7 @@ def createTables():
     """
     db.create_all()
     if not User.query.filter_by(username='admin').first():
-        adminUser = User(username='admin', password='admin')  # In production, store hashed passwords!
+        adminUser = User(username='admin', password='admin')  # Default admin user
         db.session.add(adminUser)
         db.session.commit()
 
@@ -162,12 +161,7 @@ def taskExplanation():
     if 'user_id' not in session:
         flash('Please log in first.', 'warning')
         return redirect(url_for('login'))
-    explanation = (
-        "This dashboard allows you to manage users by adding, editing, or deleting them, and provides a "
-        "task explanation page detailing the application's functionality. The login system is built "
-        "using Python (Flask) and uses SQLite as its database. Extend and style this application as needed!"
-    )
-    return render_template('task_explanation.html', explanation=explanation)
+    return render_template('task_explanation.html')
 
 @app.route('/logout')
 def logout():
@@ -179,7 +173,6 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    # Ensure tables are created within the application context
     with app.app_context():
          createTables()
     app.run(debug=True)

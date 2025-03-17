@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - Creative App</title>
+  <title>Dashboard - SE Task2 APP</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
@@ -89,7 +89,6 @@
       {% endif %}
     {% endwith %}
     <div class="row mt-4">
-      <!-- User Management Section -->
       <div class="col-md-6">
         <h4>User Management</h4>
         <table class="table table-bordered">
@@ -120,7 +119,6 @@
           </tbody>
         </table>
       </div>
-      <!-- Task Overview Section -->
       <div class="col-md-6">
         <h4>Task Overview</h4>
         <p>
@@ -131,7 +129,6 @@
         <a href="{{ url_for('taskExplanation') }}" class="btn btn-custom">Show More</a>
       </div>
     </div>
-    <!-- Additional Brief Description Section -->
     <div class="task-desc mt-4">
       <h5>Brief Task Description</h5>
       <p>
